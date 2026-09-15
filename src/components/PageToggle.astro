@@ -1,0 +1,12 @@
+---
+const current = Astro.url.pathname === "/" ? "home" : Astro.url.pathname.split("/").filter(Boolean).at(-1);
+const pages = [
+  ["home", "Home", "/"],
+  ["convoagent", "ConvoAgent", "/products/convoagent/"],
+  ["salesai", "SalesAI", "/products/salesai/"],
+  ["campaignai", "CampaignAI", "/products/campaignai/"],
+  ["trustid", "TrustID", "/products/trustid/"],
+  ["spider-crm", "Spider CRM", "/products/spider-crm/"],
+];
+---
+<nav class="page-toggle" aria-label="Prototype page selector">{pages.map(([key,label,href]) => <a class:list={{ active: current === key }} href={href}>{label}</a>)}</nav>

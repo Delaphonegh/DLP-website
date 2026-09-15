@@ -1,0 +1,94 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Logo from "../components/Logo.astro";
+import { products } from "../data/products";
+
+const painPoints = [
+  ["yellow", "01", "Customers want WhatsApp, not waiting on hold", "Your call centre is expensive and your IVR feels like 2010. Meanwhile your customers are messaging you on WhatsApp and getting no reply."],
+  ["coral", "02", "Missed calls are missed revenue", "Every ring-out, every voicemail, every after-hours call is a customer walking away. Most businesses don't even know how much they're losing."],
+  ["blue", "03", "KYC takes days. Customers won't wait.", "You lose every prospect that has to come into a branch with a passport photo. There's a faster way — and it's compliant."],
+];
+
+const platform = [
+  ["WA", "Wabbit", "WhatsApp Business API for Education and Ticketing."],
+  ["AI", "Konvo AI", "AI voice agents in Ghanaian English, Twi, and Pidgin."],
+  ["PB", "Hosted PBX", "Cloud PBX and IP telephony for Ghana's enterprises."],
+  ["DR", "Digital Receptionist", "Automated call handling that never takes a lunch break."],
+  ["RC", "Robocalls", "Automated voice campaigns — confirmations, alerts, promotions."],
+];
+
+const comparison = [
+  ["Native MoMo integration", "Not supported"],
+  ["USSD as a first-class channel", "Workaround at best"],
+  ["Ghana Card identity verification", "Generic ID systems"],
+  ["Direct MNO connectivity in Ghana", "Routed via aggregators"],
+  ["Same-day support, Accra time", "Tickets in another timezone"],
+  ["Pricing in GHS", "USD-denominated"],
+];
+
+const clients = [
+  ["Vivo Energy", "/clients/vivo-energy.avif"],
+  ["National Road Safety Authority", "/clients/national-road-safety-authority.avif"],
+  ["United Pension Trustees", "/clients/united-pension-trustees.avif"],
+  ["Starbites", "/clients/starbites.avif"],
+  ["Spring Board Road Show", "/clients/spring-board-road-show.avif"],
+  ["Old Mutual", "/clients/old-mutual.avif"],
+  ["Bethel Dental", "/clients/bethel-dental.avif"],
+  ["Letshego", "/clients/letshego.avif"],
+  ["Dinah Gayle Medical", "/clients/dinah-gayle-medical.avif"],
+  ["FairMoney", "/clients/fairmoney.avif"],
+];
+---
+<BaseLayout>
+  <Header />
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow"><span></span>Connecting possibilities across Africa</div>
+          <h1>Your customers are on <mark>WhatsApp</mark>, USSD, and <em>Mobile Money.</em><br />So is your business — now.</h1>
+          <p>DLP helps banks, fintechs, and growing African businesses automate sales, collections, identity, and customer engagement. Built on the rails Africa actually runs on.</p>
+          <div class="button-row">
+            <a class="button button-dark" href="mailto:sales@dlp.africa?subject=Book%20a%20DLP%20demo">Book a demo <span>→</span></a>
+            <a class="button button-ghost" href="#products"><span class="play">▶</span>Watch the 90-second tour</a>
+          </div>
+          <div class="trust-line"><span class="avatar-stack"><i></i><i></i><i></i><i></i></span>Trusted by 40+ banks, fintechs, and enterprises across Ghana</div>
+        </div>
+
+        <div class="hero-product" aria-label="WhatsApp, USSD and reporting preview">
+          <div class="metric-float"><strong>1.2M+ <em>↗</em></strong><span>Messages handled monthly</span></div>
+          <div class="ussd-card"><b>*714*5#</b><span>Welcome to AccraBank</span><span>─────────────</span><span>1. Check balance</span><span>2. Send money</span><span>3. Pay bills</span><span>4. Talk to agent</span><span>─────────────</span><span class="cursor">▌</span></div>
+          <div class="chat-card">
+            <div class="chat-head"><span class="chat-avatar"><Logo compact /></span><span><b>AccraBank Support</b><small>● Online · powered by DLP</small></span></div>
+            <div class="chat-body">
+              <p class="incoming">Hi Akosua! How can I help today?<small>10:42</small></p>
+              <p class="outgoing">I&apos;d like to check my balance please<small>10:42 ✓✓</small></p>
+              <p class="incoming">Sure. Your current balance is <b>GHS 4,283.50</b>. Need anything else?<small>10:42</small></p>
+              <p class="outgoing">Pay my electricity bill<small>10:43 ✓✓</small></p>
+              <p class="incoming">Got it. ECG bill of GHS 142.00. Confirm with MoMo PIN?<small>10:43</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="customer-strip"><div class="wrap"><p>Trusted by Ghana&apos;s leading businesses and institutions</p><div>{clients.map(([name,src]) => <span class="client-logo"><img src={src} alt={`${name} logo`} loading="lazy" decoding="async" /></span>)}</div></div></section>
+
+    <section class="section"><div class="wrap"><div class="section-heading"><span>The reality</span><h2>Reaching your customers is harder than it should be.</h2><p>Too many channels. Too much manual work. Too little built for how Africa actually works. Most platforms were designed somewhere else and shipped here. We built ours the other way around.</p></div><div class="card-grid three">{painPoints.map(([tone,num,title,copy]) => <article class="soft-card"><i class:list={["number-badge", tone]}>{num}</i><h3>{title}</h3><p>{copy}</p></article>)}</div></div></section>
+
+    <section class="assessment" id="assessment"><div class="wrap assessment-grid"><div><div class="eyebrow dark"><span></span>5-minute assessment · free</div><h2>Not sure where to start?<br />Find your invisible leak.</h2><p>Most Ghanaian businesses lose 15–30% of potential revenue to missed calls, slow onboarding, and abandoned conversations. Our Business Assessment Tool shows you exactly where — and what to do about it.</p><a class="button button-dark" href="mailto:sales@dlp.africa?subject=Business%20assessment">Take the free assessment <span>→</span></a></div><div class="audit-card"><small>BUSINESS ASSESSMENT TOOL</small><h3>Your revenue leak, quantified</h3><dl><div><dt>Missed inbound calls / mo</dt><dd>~340</dd></div><div><dt>Avg. deal value lost</dt><dd>GHS 450</dd></div><div><dt>Monthly leak (est.)</dt><dd>GHS 153,000</dd></div></dl><p>↗ Recoverable with ConvoAgent + Wabbit</p></div></div></section>
+
+    <section class="section dark-section" id="products"><div class="wrap"><div class="section-heading"><span>The AI Suite</span><h2>Five AI products.<br />Built for African business.</h2><p>Each one solves a problem you&apos;re already paying for — manually. We automate it, we make it intelligent, and we run it on the channels your customers actually use.</p></div><div class="product-grid">{products.filter(p => p.slug !== "spider-crm").map(product => <a class:list={["product-card", product.tone]} href={`/products/${product.slug}/`}><small>{product.name.toUpperCase()}</small><h3>{product.cardTitle}</h3><p>{product.summary}</p><span>Explore {product.name} →</span></a>)}<a class="product-card platform-product" href="#platform"><small>THE PLATFORM</small><h3>The infrastructure<br />behind the AI</h3><p>Fish Africa, Wabbit, Spider CRM, Konvo AI, PBX, and more. The rails Africa runs on.</p><span>See the platform →</span></a></div></div></section>
+
+    <section class="section" id="platform"><div class="wrap"><div class="section-heading"><span>The Platform</span><h2>The infrastructure behind the intelligence.</h2><p>Two flagships and a full stack of communications products underneath. Fish Africa handles the reach. Spider CRM handles the relationships. Everything else fills in between.</p></div><div class="flagship-grid"><a class="flagship fish" href="https://letsfish.africa" target="_blank" rel="noreferrer"><small>FISH AFRICA · CPAAS</small><h3>Connections for real growth.</h3><p>The CPaaS platform trusted by thousands of Ghanaian businesses. Voice Broadcast, Bulk SMS, and Airtime &amp; Data — priced in cedis, launched in minutes.</p><b>VOICE BROADCAST · BULK SMS · AIRTIME &amp; DATA</b></a><a class="flagship spider" href="/products/spider-crm/"><small>SPIDER CRM · CUSTOMER ENGAGEMENT</small><h3>Every conversation.<br />One customer record.</h3><p>Voice, WhatsApp, Instagram, email, and webchat — captured, understood, and acted on. Built on the licensed voice infrastructure DLP Africa operates itself.</p><b>CAPTURE · OPERATE · UNDERSTAND</b></a></div><div class="platform-grid">{platform.map(([initials,name,copy]) => <article class="platform-card"><i>{initials}</i><h3>{name}</h3><p>{copy}</p></article>)}</div></div></section>
+
+    <section class="section why-section" id="why"><div class="wrap why-grid"><div><div class="section-heading"><span>Why DLP</span><h2>Global tools weren&apos;t built for Ghana. We were.</h2></div><ol class="reason-list"><li><i>1</i><div><b>Native to Mobile Money &amp; USSD</b><span>MoMo isn&apos;t a feature flag. It&apos;s the rail your business runs on. We treat it that way.</span></div></li><li><i>2</i><div><b>Integrated with every Ghanaian MNO</b><span>MTN, Vodafone, AirtelTigo. Direct connectivity, not workarounds. Your messages reach every customer.</span></div></li><li><i>3</i><div><b>Local data residency. Local support. Local accountability.</b><span>An Accra-based team that picks up the phone — and a platform that respects Ghana&apos;s Data Protection Act.</span></div></li><li><i>4</i><div><b>Pricing in Cedis. ROI you can defend.</b><span>Tiered for SMEs and built to scale. No surprise USD invoices when the cedi moves.</span></div></li></ol></div><div class="compare"><header><b>DLP</b><span>International platforms</span></header>{comparison.map(([us,them]) => <div><b><i>✓</i>{us}</b><span><i>—</i>{them}</span></div>)}</div></div></section>
+
+    <section class="section proof" id="proof"><div class="wrap"><blockquote><div class="quote-mark">“</div><p>We replaced three vendors with DLP. Our WhatsApp bot picks up calls our agents used to miss, and we&apos;re recovering 32% more on overdue accounts. The team gets back to us same day, every time.</p><footer><i>KM</i><span><b>Kwabena Mensah</b><small>Chief Operating Officer · PayPlus Ghana</small></span></footer></blockquote></div></section>
+
+    <section class="final-cta"><div class="wrap"><h2>Ready to see what&apos;s possible?</h2><p>Twenty minutes. We&apos;ll walk you through DLP using your actual use case. No slideware.</p><div class="button-row centered"><a class="button button-yellow" href="mailto:sales@dlp.africa?subject=Book%20a%20DLP%20demo">Book a demo <span>→</span></a><a class="button button-glass" href="https://wa.me/233302208046">Talk to us on WhatsApp</a></div></div></section>
+  </main>
+  <Footer />
+</BaseLayout>

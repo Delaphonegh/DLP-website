@@ -1,0 +1,45 @@
+---
+import type { Product } from "../data/products";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "./Header.astro";
+import Footer from "./Footer.astro";
+import ProductMockup from "./ProductMockup.astro";
+interface Props { product: Product }
+const { product } = Astro.props;
+const mailSubject = encodeURIComponent(`${product.name} demo`);
+---
+<BaseLayout title={`${product.name} | DLP Africa`} description={product.summary}>
+  <Header />
+  <main>
+    <section class:list={["product-hero", product.tone]}>
+      <div class="product-glow"></div>
+      <div class="wrap product-hero-grid">
+        <div>
+          <div class="product-label"><i></i> {product.name} · {product.label}</div>
+          <h1>{product.hero}</h1>
+          <p>{product.summary}</p>
+          <div class="button-row"><a class="button button-yellow" href={`mailto:sales@dlp.africa?subject=${mailSubject}`}>Book a demo <span>→</span></a><a class="button button-glass" href="https://wa.me/233302208046">Talk on WhatsApp</a></div>
+        </div>
+        <ProductMockup product={product} />
+      </div>
+    </section>
+
+    <section class="section"><div class="wrap"><div class="section-heading"><span>The problem</span><h2>{product.problemTitle}</h2></div><div class="card-grid three">{product.problems.map((problem, i) => <article class="soft-card"><i class:list={["number-badge", ["coral", "yellow", "blue"][i]]}>0{i+1}</i><h3>{problem.title}</h3><p>{problem.copy}</p></article>)}</div></div></section>
+
+    <section class="section capability-section"><div class="wrap"><div class="section-heading"><span>How it works</span><h2>{product.capabilityTitle}</h2><p>{product.summary}</p></div><div class="card-grid four">{product.capabilities.map((capability, i) => <article class="capability-card"><i>{String(i+1).padStart(2,"0")}</i><h3>{capability.title}</h3><p>{capability.copy}</p></article>)}</div></div></section>
+
+    {product.slug === "spider-crm" && <>
+      <section class="section spider-moat"><div class="wrap"><div class="section-heading"><span>The moat</span><h2>Voice is not an integration. It is the foundation.</h2><p>Spider runs on licensed voice infrastructure DLP Africa operates itself.</p></div><div class="card-grid four"><article><i></i><h3>Licensed operator</h3><p>DLP holds a Value Added Service licence and runs its own voice platform.</p></article><article><i></i><h3>Direct interconnect</h3><p>MTN, Telecel, and AirtelTigo — calls to local numbers stay on local routes.</p></article><article><i></i><h3>Contact centre inside</h3><p>Browser softphone, IVR, queues, autodialler, and supervisor dashboards.</p></article><article><i></i><h3>Voice data is CRM data</h3><p>Recordings, transcripts, and outcomes sit on the customer record.</p></article></div><b class="section-note">Licensed, interconnected, and operated here — not a softphone over an overseas provider.</b></div></section>
+      <section class="section spider-ai"><div class="wrap ai-grid"><div><div class="section-heading"><span>Understand layer</span><h2>AI that takes action</h2><p>Not a chatbot bolted on. Work that runs whether anyone remembers to ask.</p></div><ul><li><b>Scheduled agents</b><span>Configure once. Spider runs it on your schedule.</span></li><li><b>Ask Spider anything</b><span>Query the whole CRM in plain language.</span></li><li><b>Workflow automation</b><span>Sequences without code. Configured once, running from then on.</span></li></ul></div><div class="ask-spider"><header><i>✦</i><b>Ask Spider</b></header><div><p>Which agents brought in the most revenue this month?</p><p>Top performers: <b>Kwadwo Mensah — GHS 342,500</b>, Adjoa Sarpong — GHS 218,000.</p><p>Which of their deals are stalled?</p><p>4 deals idle 14+ days. Longest: <b>Fortune Foods</b> — 23 days idle.</p></div></div></div></section>
+      <section class="section spider-flow"><div class="wrap"><div class="section-heading"><span>The flow</span><h2>One customer, end to end</h2><p>Follow a single enquiry through Spider.</p></div><div class="flow-grid">{[["Enquiry arrives","A message, call, or web form lands in the shared workspace."],["Lead created","Captured, assigned to an owner, with a clock running."],["Conversation continues","Whoever answers next sees every prior call, message, and note."],["Deal progresses","Quote built, sent, and tracked on the pipeline board."],["Won and invoiced","Order and invoice raised against the same record. No re-keying."],["Visible to management","Counted in pipeline, leaderboard, and quality scoring."]].map(([title,copy],i) => <article><i>{i+1}</i><h3>{title}</h3><p>{copy}</p></article>)}</div><b class="section-note">Nothing is re-keyed. Nothing is lost between steps.</b></div></section>
+      <section class="section deployment"><div class="wrap"><div class="section-heading"><span>Deployment</span><h2>Live in three weeks.</h2><p>No long IT project. No hardware. No consultancy retainer.</p></div><div class="deployment-grid">{[["Week 1","Discovery","Map how the team manages customers today. Agree what goes live first."],["Week 2","Setup & training","Data imported, roles set, fields and pipelines configured, team trained."],["Week 3","Go live","Running on Spider with your own data and your own process."],["Days 1–30","Success plan","Adoption checks, tune-ups, and a value review against the numbers we agreed."]].map(([time,title,copy],i) => <article class:list={{featured:i===3}}><small>{time}</small><h3>{title}</h3><p>{copy}</p></article>)}</div></div></section>
+    </>}
+
+    <section class="section metrics-section"><div class="wrap"><div class="section-heading compact"><span>Outcomes</span><h2>{product.slug === "salesai" ? "The pipeline that builds itself." : product.slug === "campaignai" ? "The results in one view." : product.slug === "trustid" ? "The number that matters." : "What actually changes."}</h2></div><div class="metrics-grid">{product.metrics.map(([value,label]) => <div><strong>{value}</strong><span>{label}</span></div>)}</div></div></section>
+
+    <section class="section local-section"><div class="wrap local-grid"><div class="section-heading compact"><span>Why DLP</span><h2>Built here. Run here. Answerable here.</h2></div><div class="local-points"><div><b>Licensed infrastructure</b><span>Direct local connectivity and fewer layers between you and your customers.</span></div><div><b>17 years in this market</b><span>Deep operating context, not a generic Africa playbook.</span></div><div><b>A team you can reach</b><span>Real people in Accra, working your business hours.</span></div><div><b>Data accountability</b><span>Built for Ghanaian privacy and regulatory expectations.</span></div></div></div></section>
+
+    <section class="final-cta"><div class="wrap"><span>{product.name}</span><h2>{product.finalTitle}</h2><p>Twenty minutes. We&apos;ll walk through the product using your actual use case.</p><div class="button-row centered"><a class="button button-yellow" href={`mailto:sales@dlp.africa?subject=${mailSubject}`}>Book a demo <span>→</span></a><a class="button button-glass" href="https://wa.me/233302208046">Talk to us on WhatsApp</a></div></div></section>
+  </main>
+  <Footer />
+</BaseLayout>
